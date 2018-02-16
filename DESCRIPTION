@@ -1,0 +1,18 @@
+Package: CLmisc
+Title: Chandler Lutz's Miscellaneous R functions
+Version: 0.0.0.9001
+Authors@R: person("First", "Last", email = "chandler.lutz@gmail.com", role = c("aut", "cre"))
+Description: Chandler Lutz's Miscellaneous R functions.
+Depends:
+    R (>= 3.3.2),
+    data.table,
+    tidyZillow,
+    ggplot2,
+    lubridate,
+    haven
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+RoxygenNote: 6.0.1
+Imports: magrittr
