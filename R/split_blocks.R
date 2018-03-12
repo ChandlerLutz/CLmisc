@@ -12,6 +12,7 @@
 #' @param x vector to split
 #' @param m the block length
 #' @return a list of blocks, where each element of the list has length \code{m}
+#' @export
 #' @examples
 #' x <- 1:10
 #' split_blocks(x, 2)
