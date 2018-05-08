@@ -24,6 +24,11 @@
 #' @param remove_first_dummy
 #' Removes the first dummy of every variable that only n-1 Dummies remain.
 #' This avoids multicollinearity issues in models.
+#' @param by_reference
+#' Logical variable for update by reference. If \code{FALSE},
+#' the function will copy the data and return a new data.table with
+#' the dummy columns appended. If \code{TRUE}, the data.table will
+#' be updated by reference.
 #' @return
 #' A data.table with same number of rows as inputted data and original
 #' columns plus the newly created dummy columns.
@@ -40,7 +45,8 @@
 #'     remove_first_dummy = TRUE)
 dummy_cols <- function(.data,
                        select_columns = NULL,
-                       remove_first_dummy = FALSE) {
+                       remove_first_dummy = FALSE,
+                       by_reference = FALSE) {
 
   stopifnot(is.null(select_columns) || is.character(select_columns),
             select_columns != "",
@@ -51,7 +57,14 @@ dummy_cols <- function(.data,
   if (!data.table::is.data.table(.data)) {
     stop("Error: .data needs to be a data.table")
   }
-  .data <- copy(.data)
+
+  if (by_reference) {
+    ##Not updating by reference, copy the data
+    ##so that the data outside of the function is
+    ##not manipulated
+    .data <- copy(.data)
+  }
+
 
   # Grabs column names that are character or factor class -------------------
   if (!is.null(select_columns)) {

@@ -4,7 +4,8 @@
 \alias{dummy_cols}
 \title{Fast creation of dummy variables}
 \usage{
-dummy_cols(.data, select_columns = NULL, remove_first_dummy = FALSE)
+dummy_cols(.data, select_columns = NULL, remove_first_dummy = FALSE,
+  by_reference = FALSE)
 }
 \arguments{
 \item{.data}{An object with the data set you want to make dummy columns from.}
@@ -14,6 +15,11 @@ If NULL (default), uses all character and factor columns.}
 
 \item{remove_first_dummy}{Removes the first dummy of every variable that only n-1 Dummies remain.
 This avoids multicollinearity issues in models.}
+
+\item{by_reference}{Logical variable for update by reference. If \code{FALSE},
+the function will copy the data and return a new data.table with
+the dummy columns appended. If \code{TRUE}, the data.table will
+be updated by reference.}
 }
 \value{
 A data.table with same number of rows as inputted data and original
