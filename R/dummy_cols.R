@@ -58,7 +58,7 @@ dummy_cols <- function(.data,
     stop("Error: .data needs to be a data.table")
   }
 
-  if (by_reference) {
+  if (by_reference == FALSE) {
     ##Not updating by reference, copy the data
     ##so that the data outside of the function is
     ##not manipulated
