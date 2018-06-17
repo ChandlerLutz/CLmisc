@@ -9,6 +9,6 @@
 Miscellaneous Functions by Chandler Lutz
 }
 \author{
-\strong{Maintainer}: First Last \email{chandler.lutz@gmail.com}
+\strong{Maintainer}: Chandler Lutz \email{chandler.lutz@gmail.com}
 
 }
