@@ -6,7 +6,7 @@
 \alias{CLmisc-package}
 \title{Miscellaneous Functions by Chandler Lutz}
 \description{
-Miscellaneous Functions by Chandler Lutz
+Chandler Lutz's Miscellaneous R functions.
 }
 \author{
 \strong{Maintainer}: Chandler Lutz \email{chandler.lutz@gmail.com}
