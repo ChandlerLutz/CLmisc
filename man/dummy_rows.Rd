@@ -52,6 +52,7 @@ dummy_rows(crime, select_columns = c("city", "year"),
 \seealso{
 \code{\link{dummy_cols}} For creating dummy columns
 
-Other dummy functions: \code{\link{dummy_cols}}
+Other dummy functions: \code{\link{create_time_trends}},
+  \code{\link{dummy_cols}}
 }
 \concept{dummy functions}

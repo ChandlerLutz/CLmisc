@@ -23,7 +23,7 @@
 #' mtcars.DT <- as.data.table(mtcars)
 #' mtcars.DT %>%
 #'  .[, cyl := as.character(cyl)] %>%
-#'  pipe_test(test = class(.[["cyl"]]), value = "numeric")
+#'  pipe_test(test = class(.[["cyl"]]), value = "character")
 #'
 #' @export
 pipe_test <- function(obj, test, value, tolerance = NULL) {
