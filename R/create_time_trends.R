@@ -107,13 +107,10 @@ create_time_trends <- function(.data, time.col, select.column,
     print(sprintf("The regex for the linear time trend columns are `^tt.%s_`",
                   select.column))
 
-    ##clean up
-    .data <- .data[, c("temp.time.trend2")]
-
   }
 
   ##clean up
-  .data <- .data[, c("temp.time.col", "temp.time.trend") := NULL]
+  .data <- .data[, c("temp.time.col", "temp.time.trend", "temp.time.trend2") := NULL]
 
 
   return(.data)
