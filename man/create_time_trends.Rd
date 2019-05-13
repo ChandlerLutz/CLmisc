@@ -4,7 +4,7 @@
 \alias{create_time_trends}
 \title{Fast creatation of time trends}
 \usage{
-create_time_trends(.data, time.col, char.col,
+create_time_trends(.data, time.col, select.column,
   quadratic.time.trends = FALSE, remove.first.trend = FALSE)
 }
 \arguments{
@@ -13,7 +13,7 @@ create_time_trends(.data, time.col, char.col,
 \item{time.col}{a time column; can be of any type. `time.col` will
 be ordered using \code{order()}}
 
-\item{char.col}{a \code{character} column that will be used to create}
+\item{select.column}{a column that will be used to create}
 
 \item{quadratic.time.trends}{a \code{logical} for whether to include
 quadratic (squared) time trends __IN ADDITION__ to the linear
@@ -26,8 +26,8 @@ models. Default is \code{FALSE}}
 \value{
 A data.table with the same number of rows, but the time
   trends included. The format of the time trend columns will be
-  \code{tt.char.col_value} (linear trends) or \code{tt2.char.col_value}
-  (quadratic trends) where \code{char.col} is the name of the character
+  \code{tt.select.column_value} (linear trends) or \code{tt2.select.column_value}
+  (quadratic trends) where \code{select.column} is the name of the character
   column requested from the user and \code{value} is the value of the of
   the character column for that time trend
 }
@@ -43,7 +43,7 @@ crime <- setDT(expand.grid(city = c("SF", "SF", "NYC"),
                crime = 1:3, stringsAsFactors = FALSE))
 crime2 <- copy(crime)
 print(create_time_trends(crime2, time.col = "year",
-                         char.col = "city"))
+                         select.column = "city"))
 }
 \seealso{
 \code{\link{dummy_cols}} For creating dummy columns
