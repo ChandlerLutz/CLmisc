@@ -92,7 +92,7 @@ create_time_trends <- function(.data, time.col, select.column,
     .data <- .data %>%
       dummy_cols(select_columns = select.column, remove_first_dummy = remove.first.trend)
     ##the names of the dummy variables
-    names.dummies <- names(.data) %>% .[grepl(paste0("^", select.column, "_"))]
+    names.dummies <- names(.data) %>% .[grepl(paste0("^", select.column, "_"), x = .)]
     ##updated names for the time trends
     names.dummies.tt2 <- paste0("tt2.", names.dummies)
 
