@@ -14,7 +14,7 @@ will be omitted. This will also be returned}
 
 \item{value}{the value that the test should be equal to}
 
-\item{tolereance}{The tolerance for equality. Set to 0 exact
+\item{tolerance}{The tolerance for equality. Set to 0 exact
 (identical) equality}
 }
 \value{

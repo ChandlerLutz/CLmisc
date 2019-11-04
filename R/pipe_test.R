@@ -12,7 +12,7 @@
 #'   will be omitted. This will also be returned
 #' @param test The test
 #' @param value the value that the test should be equal to
-#' @param tolereance The tolerance for equality. Set to 0 exact
+#' @param tolerance The tolerance for equality. Set to 0 exact
 #'   (identical) equality
 #'
 #' @return \code{obj} -- the original first parameter passed to
