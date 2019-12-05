@@ -4,8 +4,13 @@
 \alias{create_time_trends}
 \title{Fast creatation of time trends}
 \usage{
-create_time_trends(.data, time.col, select.column,
-  quadratic.time.trends = FALSE, remove.first.trend = FALSE)
+create_time_trends(
+  .data,
+  time.col,
+  select.column,
+  quadratic.time.trends = FALSE,
+  remove.first.trend = FALSE
+)
 }
 \arguments{
 \item{.data}{a \code{data.table}}
@@ -48,7 +53,8 @@ print(create_time_trends(crime2, time.col = "year",
 \seealso{
 \code{\link{dummy_cols}} For creating dummy columns
 
-Other dummy functions: \code{\link{dummy_cols}},
-  \code{\link{dummy_rows}}
+Other dummy functions: 
+\code{\link{dummy_cols}()},
+\code{\link{dummy_rows}()}
 }
 \concept{dummy functions}

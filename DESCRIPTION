@@ -1,6 +1,6 @@
 Package: CLmisc
 Title: Chandler Lutz's Miscellaneous R functions
-Version: 0.0.0.9006
+Version: 0.0.0.9007
 Authors@R: person("Chandler", "Lutz", email = "chandler.lutz@gmail.com", role = c("aut", "cre"))
 Description: Chandler Lutz's Miscellaneous R functions.
 Depends:
@@ -15,6 +15,6 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.1.0
+RoxygenNote: 7.0.2
 Imports: magrittr
 Suggests: testthat
