@@ -18,18 +18,22 @@
 #' @param .data a \code{data.table}
 #' @param time.col a time column; can be of any type. `time.col` will
 #'   be ordered using \code{order()}
-#' @param select.column a column that will be used to create
-#' @param quadratic.time.trends a \code{logical} for whether to include
-#'   quadratic (squared) time trends __IN ADDITION__ to the linear
-#'   time trends for the the dummy columns. Default is \code{FALSE}
+#' @param select.column a column with cross-sectional units that will
+#'   be used to create the time trends. Think fixed effects such as
+#'   cities, regions, counties, etc.
+#' @param quadratic.time.trends a \code{logical} for whether to
+#'   include quadratic (squared) time trends __IN ADDITION__ to the
+#'   linear time trends for the the dummy columns. Default is
+#'   \code{FALSE}
 #' @param remove.first.trend removes the first time trend so that only
-#'   \code{N - 1} time trends reamin. This avoids the multicollinearity in
-#'   models. Default is \code{FALSE}
+#'   \code{N - 1} time trends reamin. This avoids the
+#'   multicollinearity in models. Default is \code{FALSE}
 #' @return A data.table with the same number of rows, but the time
 #'   trends included. The format of the time trend columns will be
-#'   \code{tt.select.column_value} (linear trends) or \code{tt2.select.column_value}
-#'   (quadratic trends) where \code{select.column} is the name of the character
-#'   column requested from the user and \code{value} is the value of the of
+#'   \code{tt.select.column_value} (linear trends) or
+#'   \code{tt2.select.column_value} (quadratic trends) where
+#'   \code{select.column} is the name of the character column
+#'   requested from the user and \code{value} is the value of the of
 #'   the character column for that time trend
 #' @export
 #' @examples
