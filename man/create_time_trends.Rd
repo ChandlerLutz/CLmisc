@@ -18,22 +18,26 @@ create_time_trends(
 \item{time.col}{a time column; can be of any type. `time.col` will
 be ordered using \code{order()}}
 
-\item{select.column}{a column that will be used to create}
+\item{select.column}{a column with cross-sectional units that will
+be used to create the time trends. Think fixed effects such as
+cities, regions, counties, etc.}
 
-\item{quadratic.time.trends}{a \code{logical} for whether to include
-quadratic (squared) time trends __IN ADDITION__ to the linear
-time trends for the the dummy columns. Default is \code{FALSE}}
+\item{quadratic.time.trends}{a \code{logical} for whether to
+include quadratic (squared) time trends __IN ADDITION__ to the
+linear time trends for the the dummy columns. Default is
+\code{FALSE}}
 
 \item{remove.first.trend}{removes the first time trend so that only
-\code{N - 1} time trends reamin. This avoids the multicollinearity in
-models. Default is \code{FALSE}}
+\code{N - 1} time trends reamin. This avoids the
+multicollinearity in models. Default is \code{FALSE}}
 }
 \value{
 A data.table with the same number of rows, but the time
   trends included. The format of the time trend columns will be
-  \code{tt.select.column_value} (linear trends) or \code{tt2.select.column_value}
-  (quadratic trends) where \code{select.column} is the name of the character
-  column requested from the user and \code{value} is the value of the of
+  \code{tt.select.column_value} (linear trends) or
+  \code{tt2.select.column_value} (quadratic trends) where
+  \code{select.column} is the name of the character column
+  requested from the user and \code{value} is the value of the of
   the character column for that time trend
 }
 \description{
