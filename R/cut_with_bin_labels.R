@@ -4,14 +4,14 @@
 ##    Questions/comments: cl.eco@cbs.dk
 ##    $Revisions:      1.0.0     $Date:  2020-07-15
 
-#' `cut` using endpoints as bin labels bin labels
+#' \code{cut} using endpoints as bin labels bin labels
 #'
-#' Use endpoints as bin labels with `cut`. The only difference between
-#' this function and `cut`, is that this function will label the
-#' levels based on the endpoints if `labels` are specified as either
-#' "left" or "right". For more information, see `cut`
+#' Use endpoints as bin labels with \code{cut}. The only difference between
+#' this function and \code{cut}, is that this function will label the
+#' levels based on the endpoints if \code{labels} are specified as either
+#' "left" or "right". For more information, see \code{cut}
 #'
-#' @seealso `cut`
+#' @seealso \code{cut}
 #'
 #' @param x a numeric vector which is to be converted to a factor by
 #'   cutting.
@@ -29,7 +29,7 @@
 #'   lowest (or highest, for 'right = FALSE') 'breaks' value should be
 #'   included.
 #' @param right logical, indicating if the intervals should be closed
-#'   on the right (and open on the left) or vice versa. Default is `TRUE`
+#'   on the right (and open on the left) or vice versa. Default is \code{TRUE}
 #' @param dig.lab integer which is used when labels are not given.  It
 #'   determines the number of digits used in formatting the break
 #'   numbers.
@@ -41,8 +41,16 @@
 #' data(mtcars)
 #' breaks <- seq(from = 0, to = max(mtcars$hp) + 10, by = 10)
 #' data.table(hp = mtcars$hp,
-#'           bins.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left"),
-#'           bins.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right")
+#'            bin.cut.default = cut(mtcars$hp, breaks = breaks),
+#'            bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left"),
+#'            bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right")
+#'           ) %>% print
+#'
+#' #Using `right` == FALSE
+#' data.table(hp = mtcars$hp,
+#'            bin.cut.default = cut(mtcars$hp, breaks = breaks, right = FALSE),
+#'            bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left", right = FALSE),
+#'            bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right", right = FALSE)
 #'           ) %>% print
 cut_with_bin_labels <- function(x, breaks, labels = NULL,
          include.lowest = FALSE, right = TRUE, dig.lab = 3,
@@ -54,11 +62,17 @@ cut_with_bin_labels <- function(x, breaks, labels = NULL,
                right = right, dig.lab = dig.lab,
                ordered_result = ordered_result, ...) %>%
       as.character
-    if (labels == "left") {
+    if (labels == "left" && isTRUE(right)) {
       out <- gsub("\\((.*),.*\\]$", "\\1", x = out) %>%
         as.numeric
-    } else if (labels == "right") {
+    } else if (labels == "right" && isTRUE(right)) {
       out <- gsub("\\(.*,(.*)\\]$", "\\1", x = out) %>%
+        as.numeric
+    } else if (labels == "left" && isFALSE(right)) {
+      out <- gsub("\\[(.*),.*\\)$", "\\1", x = out) %>%
+        as.numeric
+    } else if (labels == "right" && isFALSE(right)) {
+      out <- gsub("\\[.*,(.*)\\)$", "\\1", x = out) %>%
         as.numeric
     }
   } else {

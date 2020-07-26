@@ -2,7 +2,7 @@
 % Please edit documentation in R/cut_with_bin_labels.R
 \name{cut_with_bin_labels}
 \alias{cut_with_bin_labels}
-\title{`cut` using endpoints as bin labels bin labels}
+\title{\code{cut} using endpoints as bin labels bin labels}
 \usage{
 cut_with_bin_labels(
   x,
@@ -36,7 +36,7 @@ lowest (or highest, for 'right = FALSE') 'breaks' value should be
 included.}
 
 \item{right}{logical, indicating if the intervals should be closed
-on the right (and open on the left) or vice versa. Default is `TRUE`}
+on the right (and open on the left) or vice versa. Default is \code{TRUE}}
 
 \item{dig.lab}{integer which is used when labels are not given.  It
 determines the number of digits used in formatting the break
@@ -48,19 +48,27 @@ numbers.}
 factor?}
 }
 \description{
-Use endpoints as bin labels with `cut`. The only difference between
-this function and `cut`, is that this function will label the
-levels based on the endpoints if `labels` are specified as either
-"left" or "right". For more information, see `cut`
+Use endpoints as bin labels with \code{cut}. The only difference between
+this function and \code{cut}, is that this function will label the
+levels based on the endpoints if \code{labels} are specified as either
+"left" or "right". For more information, see \code{cut}
 }
 \examples{
 data(mtcars)
 breaks <- seq(from = 0, to = max(mtcars$hp) + 10, by = 10)
 data.table(hp = mtcars$hp,
-          bins.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left"),
-          bins.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right")
+           bin.cut.default = cut(mtcars$hp, breaks = breaks),
+           bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left"),
+           bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right")
+          ) \%>\% print
+
+#Using `right` == FALSE
+data.table(hp = mtcars$hp,
+           bin.cut.default = cut(mtcars$hp, breaks = breaks, right = FALSE),
+           bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left", right = FALSE),
+           bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right", right = FALSE)
           ) \%>\% print
 }
 \seealso{
-`cut`
+\code{cut}
 }
