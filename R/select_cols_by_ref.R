@@ -16,7 +16,8 @@
 #'
 #' @export
 select_by_ref <- function(DT, keep.cols) {
-  if (!is.character(keep.cols)) stop("Error: keep.cols must be a character vector")
+  if (!is.data.table(DT)) stop("Error: `DT` needs to be a data.table")
+  if (!is.character(keep.cols)) stop("Error: `keep.cols` must be a character vector")
   delete.cols <- names(DT) %>% .[!(. %chin% keep.cols)]
   DT <- DT[, c(delete.cols) := NULL]
   return(DT)
