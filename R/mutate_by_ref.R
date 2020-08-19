@@ -61,7 +61,7 @@
 #' mutate_by_ref(copy(DT.mtcars),
 #'               cols = is.numeric, f = sqrt, names.extra = TRUE) %>%
 #'   head %>% print
-## Mutate multiple columns by reference using the same function
+#' @export
 mutate_by_ref <- function(DT, cols, f, names.extra = NULL) {
 
   if (!is.data.table(DT)) stop("Error: `DT` must be a data.table")
