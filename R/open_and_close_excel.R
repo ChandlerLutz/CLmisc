@@ -13,6 +13,7 @@
 #' @param .file.path A path to the excel file to open and close
 #' @param time.sleep The number of seconds to leave the excel file
 #'   open. Defaults to 30 seconds
+#' @export
 open_and_close_excel <- function(.file.path, time.sleep = 30) {
 
   if (Sys.info()['sysname'] != "Windows")
