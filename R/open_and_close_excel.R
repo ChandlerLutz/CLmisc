@@ -22,11 +22,15 @@ open_and_close_excel <- function(.file.path, time.sleep = 30) {
   if (!file.exists(.file.path))
     stop("Error: The file path does not exist")
 
-  .file.path <- convert_file_path_to_windows_format(.file.path)
+  ##https://stackoverflow.com/a/56903869/1317443
+  .file.path <- file.path(normalizePath(dirname(.file.path)), .file.path, fsep = "\\")
+
+  print("opening and closing the file with the path: ")
+  print(.file.path)
 
   time.sleep <- sprintf("%02.f", time.sleep)
 
-  print(.file.path)
+
 
   ##https://www.automateexcel.com/vba/open-close-workbook/
   vb.script <- sprintf('
