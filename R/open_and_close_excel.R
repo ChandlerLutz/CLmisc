@@ -23,7 +23,9 @@ open_and_close_excel <- function(.file.path, time.sleep = 30) {
     stop("Error: The file path does not exist")
 
   ##https://stackoverflow.com/a/56903869/1317443
-  .file.path <- file.path(normalizePath(dirname(.file.path)), .file.path, fsep = "\\")
+  ##.file.path <- file.path(normalizePath(dirname(.file.path)), .file.path, fsep = "\\")
+  .file.path <- normalizePath(.file.path)
+
 
   print("opening and closing the file with the path: ")
   print(.file.path)
