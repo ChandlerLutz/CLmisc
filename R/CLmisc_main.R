@@ -6,7 +6,7 @@
 
 #' Miscellaneous Functions by Chandler Lutz
 #'
-#' @import data.table ggplot2 stats lubridate lfe fst
+#' @import data.table ggplot2 stats lubridate lfe fst cowplot
 "_PACKAGE"
 
 ##For magrittr dot. From https://github.com/tidyverse/magrittr/issues/29
