@@ -18,4 +18,11 @@ publication quality graph creation that works well with facets
 \examples{
 library(ggplot2)
 data(mtcars)
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = hp)) +
+  facet_grid(rows = vars(cyl)) + 
+  theme_bw_cl() +
+  labs(title = "Graph title",
+       subtitle = "Graph Subtitle", 
+       caption = "Graph caption") 
 }

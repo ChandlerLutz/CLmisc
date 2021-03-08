@@ -18,6 +18,7 @@
 #'       subtitle = "Graph Subtitle", 
 #'       caption = "Graph caption")
 theme_cowplot_cl <- function(font.size = 11) {
+  rel_med_small = 13 / 14
   cowplot::theme_cowplot(font.size, rel_large = 15 / 14) %+replace%
     theme(
       legend.background = element_rect(color = "black", size = 0.3, linetype = "solid"),
@@ -26,7 +27,8 @@ theme_cowplot_cl <- function(font.size = 11) {
       ##from https://stackoverflow.com/a/50593988
       legend.key.height = unit(1.0, 'lines'),
       ##to undo the legend margins from cowplot
-      legend.margin = margin(3, 4, 3, 3)
+      legend.margin = margin(3, 4, 3, 3),
+      legend.title = element_text(size = rel(rel_med_small), hjust = 0)
     ) +
     cowplot::background_grid(major = "xy", minor = "none", size.major = 0.1,
                            color.major = "gray90")
@@ -44,12 +46,20 @@ theme_cowplot_cl <- function(font.size = 11) {
 #' @examples
 #' library(ggplot2)
 #' data(mtcars)
+#' ggplot(mtcars, aes(x = wt, y = mpg)) +
+#'   geom_point(aes(color = hp)) +
+#'   facet_grid(rows = vars(cyl)) + 
+#'   theme_bw_cl() +
+#'   labs(title = "Graph title",
+#'        subtitle = "Graph Subtitle", 
+#'        caption = "Graph caption") 
 theme_bw_cl <- function(font.size = 11) {
 
   ##based on theme_cowplot()
 
   ##parameters to theme_cowplot
   font_size = font.size; font_family = ""; line_size = 0.5;
+  rel_med_small = 13 / 14; 
   rel_small = 12/14; rel_tiny = 11/14; rel_large = 15/14;
   half_line <- font_size/2
   small_size <- rel_small * font_size
@@ -94,7 +104,7 @@ theme_bw_cl <- function(font.size = 11) {
           legend.key.height = unit(1.0, 'lines'), ##Different from theme_cowplot()!!!
           legend.key.width = NULL,
           legend.text = element_text(size = rel(rel_small)),
-          legend.text.align = NULL, legend.title = element_text(hjust = 0),
+          legend.text.align = NULL, legend.title = element_text(size = rel(rel_med_small), hjust = 0),
           legend.title.align = NULL, legend.position = "right",
           legend.direction = NULL, legend.justification = c("left", "center"),
           legend.box = NULL, legend.box.margin = margin(0, 0, 0, 0),
