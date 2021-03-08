@@ -10,7 +10,13 @@
 #' \code{broom::tidy}, and \code{CLmisc::felm_broom_tidy}.
 #'
 #' \strong{__NOTE__: The r-squared, etc, will not be preserved as this
-#' function deletes residuals to save space}
+#' function deletes residuals to save space}. Also, when calling
+#' \code{broom::tidy} or \code{stargazer::stargazer}, you'll get an
+#' error saying that a F-statistic can't be reported. This is extra
+#' output used by \code{summary.felm}. Please ignore this as it
+#' affects this rather un-useful F-statistic. You may also see other
+#' warnings or errors. These can be safely ignored as they often just
+#' produce non-useful summary stats
 #'
 #' @param felm.object The object of type \code{felm}
 #'
@@ -80,6 +86,11 @@
 #' 
 #' identical(stargazer(est_cl, keep.stat = "N"),
 #'           stargazer(est_cl.small, keep.stat = "N"))
+#'
+#' ## -- Size Differences of examples
+#' object.size(est) / object.size(est.small)
+#' object.size(ivest) / object.size(ivest.small)
+#' object.size(est_cl) / object.size(est_cl.small)
 #' @export
 reduce_felm_object_size <- function(felm.object) {
 
@@ -87,7 +98,7 @@ reduce_felm_object_size <- function(felm.object) {
     stop("felm.object must be an felm object")
 
   ##delete these felm attributes
-  attr.to.delete <- c("residuals", "response",
+  attr.to.delete <- c("residuals", "response", "call", 
                       "c.fitted.values", "c.response",
                       "fitted.values",
                       "cfactor", "fe", "r.residuals",
@@ -95,7 +106,9 @@ reduce_felm_object_size <- function(felm.object) {
                       "ivx", "ivy", "centred.exo",
                       "STATS", "model", 
                       "terms", "hasicpt", "numctrl",
-                      "keepX", "keepCX"
+                      "keepX", "keepCX",
+                      "vcv", "robustvcv", "clustervcv",
+                      "inv", "TSS", "P.TSS"
                       )
 
   felm.object[attr.to.delete] <- NULL

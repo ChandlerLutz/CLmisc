@@ -3,7 +3,7 @@
 context("reduce_felm_object_size function")
 
 ##Clear the workspace
-rm(list = ls()) 
+## rm(list = ls()) 
 
 library(lfe); library(stargazer)
 
