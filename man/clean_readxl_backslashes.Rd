@@ -17,7 +17,7 @@ A character string with the extra backslashes inserted by
 \code{clean_readxl_backslashes()} cleans extras backslashes that
 readxl uses as escape characters when readxl reads in data. More
 specifically, readxl converts double backslashes from readxl to the
-actual R characters
+actual R characters. See examples.
 }
 \examples{
 ## https://gist.github.com/ChandlerLutz/cca06fb35003713efae87c0322ac193e

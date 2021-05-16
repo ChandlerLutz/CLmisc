@@ -5,7 +5,7 @@
 #' \code{clean_readxl_backslashes()} cleans extras backslashes that
 #' readxl uses as escape characters when readxl reads in data. More
 #' specifically, readxl converts double backslashes from readxl to the
-#' actual R characters
+#' actual R characters. See examples. 
 #'
 #' @param string a character string
 #' @return A character string with the extra backslashes inserted by
