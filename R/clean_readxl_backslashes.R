@@ -4,8 +4,8 @@
 #'
 #' \code{clean_readxl_backslashes()} cleans extras backslashes that
 #' readxl uses as escape characters when readxl reads in data. More
-#' specifically, readxl converts "\n" to "\\n", "\u00ad" to "\\u00ad",
-#' etc.
+#' specifically, readxl converts double backslashes from readxl to the
+#' actual R characters
 #'
 #' @param string a character string
 #' @return A character string with the extra backslashes inserted by
