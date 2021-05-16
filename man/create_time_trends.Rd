@@ -41,12 +41,18 @@ A data.table with the same number of rows, but the time
   the character column for that time trend
 }
 \description{
-create_time_trends() quickly creates time trends based on a
+\code{create_time_trends()} quickly creates time trends based on a
 character columns from inputted data. This function is useful for
 statistical analysis when you want time trends. The function will
 only operate on `data.tables` by reference.
 }
 \examples{
+## For unicode meanings, see
+## https://gist.github.com/ChandlerLutz/cca06fb35003713efae87c0322ac193e
+clean_readxl_backslashes("\\\\n")
+clean_readxl_backslashes("\\\\u00ad")
+clean_readxl_backslashes("\\\\u2013")
+clean_readxl_backslashes("\\\\u2013")
 crime <- setDT(expand.grid(city = c("SF", "SF", "NYC"),
                year = c(1990, 2000, 2010),
                crime = 1:3, stringsAsFactors = FALSE))
