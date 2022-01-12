@@ -11,7 +11,8 @@
 #' levels based on the endpoints if \code{labels} are specified as either
 #' "left" or "right". For more information, see \code{cut}
 #'
-#' @seealso \code{cut}
+#' @seealso \code{cut()}, \code{ggplot2::cut_interval()},
+#'   \code{ggplot2::cut_width()}, \code{ggplot2::cut_number()}
 #'
 #' @param x a numeric vector which is to be converted to a factor by
 #'   cutting.
@@ -36,7 +37,7 @@
 #' @param order_result logical: should the result be an ordered
 #'   factor?
 #' @param ... further arguments passed to or from other methods.
-#' @seealso [ggplot2::cut_interval()], [ggplot2::cut_width()], [ggplot2::cut_number()]
+#' @seealso 
 #' @export
 #' @examples
 #' data(mtcars)
