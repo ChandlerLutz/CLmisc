@@ -1,6 +1,6 @@
 Package: CLmisc
 Title: Chandler Lutz's Miscellaneous R functions
-Version: 0.0.0.9015
+Version: 0.0.0.9016
 Authors@R: person("Chandler", "Lutz", email = "chandler.lutz@gmail.com", role = c("aut", "cre"))
 Description: Chandler Lutz's Miscellaneous R functions.
 Depends:
@@ -9,7 +9,8 @@ Depends:
     ggplot2,
     lubridate,
     lfe,
-    fst
+    fst,
+    fixest
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
