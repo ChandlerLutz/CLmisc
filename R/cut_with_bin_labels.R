@@ -36,6 +36,7 @@
 #' @param order_result logical: should the result be an ordered
 #'   factor?
 #' @param ... further arguments passed to or from other methods.
+#' @seealso [ggplot2::cut_interval()], [ggplot2::cut_width()], [ggplot2::cut_number()]
 #' @export
 #' @examples
 #' data(mtcars)
