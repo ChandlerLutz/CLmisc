@@ -71,4 +71,6 @@ data.table(hp = mtcars$hp,
 }
 \seealso{
 \code{cut}
+
+[ggplot2::cut_interval()], [ggplot2::cut_width()], [ggplot2::cut_number()]
 }
