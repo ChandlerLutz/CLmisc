@@ -19,3 +19,17 @@ convert_file_path_to_windows_format <- function(.file.path)
   gsub("/", "\\\\", .file.path)
 
 
+#' Recursively make a directory if it does not exist
+#'
+#' Similar to the linux command \code{mkir -p}
+#'
+#' @param dir the directory (including parent directories) to create
+#' @export
+#' @examples
+#' \donttest{
+#' mkdir_p("test/test")
+#' }
+mkdir_p <- function(dir) {
+  if (!dir.exists(dir))
+    dir.create(dir, recursive = TRUE)
+}
