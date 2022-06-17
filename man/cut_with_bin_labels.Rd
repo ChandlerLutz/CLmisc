@@ -36,7 +36,8 @@ lowest (or highest, for 'right = FALSE') 'breaks' value should be
 included.}
 
 \item{right}{logical, indicating if the intervals should be closed
-on the right (and open on the left) or vice versa. Default is \code{TRUE}}
+on the right (and open on the left) or vice versa. Default is
+\code{TRUE}}
 
 \item{dig.lab}{integer which is used when labels are not given.  It
 determines the number of digits used in formatting the break
@@ -72,6 +73,4 @@ data.table(hp = mtcars$hp,
 \seealso{
 \code{cut()}, \code{ggplot2::cut_interval()},
   \code{ggplot2::cut_width()}, \code{ggplot2::cut_number()}
-
-
 }

@@ -30,14 +30,14 @@
 #'   lowest (or highest, for 'right = FALSE') 'breaks' value should be
 #'   included.
 #' @param right logical, indicating if the intervals should be closed
-#'   on the right (and open on the left) or vice versa. Default is \code{TRUE}
+#'   on the right (and open on the left) or vice versa. Default is
+#'   \code{TRUE}
 #' @param dig.lab integer which is used when labels are not given.  It
 #'   determines the number of digits used in formatting the break
 #'   numbers.
 #' @param order_result logical: should the result be an ordered
 #'   factor?
 #' @param ... further arguments passed to or from other methods.
-#' @seealso 
 #' @export
 #' @examples
 #' data(mtcars)
