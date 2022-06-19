@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_cols_by_ref.R
 \name{select_by_ref}
 \alias{select_by_ref}
-\title{Select columns in a data.table by reference}
+\title{Select columns in a \code{data.table} by reference}
 \usage{
 select_by_ref(DT, keep.cols)
 }
@@ -12,12 +12,12 @@ select_by_ref(DT, keep.cols)
 \item{keep.cols}{a character vector of columns in \code{DT}}
 }
 \description{
-Select columns in a data.table by reference
+For a \code{data.table}, select columns by reference and order
+based on the columns passed in by the user
 }
 \examples{
 data(mtcars)
 DT <- as.data.table(mtcars)
-DT <- select_by_ref(DT, "hp")
-head(DT)
-
+DT <- select_by_ref(DT, c("wt", "hp"))
+print(DT)
 }
