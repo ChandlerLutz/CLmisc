@@ -4,25 +4,22 @@
 ##    Questions/comments: cl.eco@cbs.dk
 ##    $Revisions:      1.0.0     $Date:  2018-10-23
 
-#' Select columns in a \code{data.table} by reference
-#'
-#' For a \code{data.table}, select columns by reference and order
-#' based on the columns passed in by the user 
+#' Select columns in a data.table by reference
 #'
 #' @param DT a \code{data.table}
 #' @param keep.cols a character vector of columns in \code{DT}
 #' @examples
 #' data(mtcars)
 #' DT <- as.data.table(mtcars)
-#' DT <- select_by_ref(DT, c("wt", "hp"))
-#' print(DT)
+#' DT <- select_by_ref(DT, "hp")
+#' head(DT)
+#'
 #' @export
 select_by_ref <- function(DT, keep.cols) {
   if (!is.data.table(DT)) stop("Error: `DT` needs to be a data.table")
   if (!is.character(keep.cols)) stop("Error: `keep.cols` must be a character vector")
   delete.cols <- names(DT) %>% .[!(. %chin% keep.cols)]
-  DT <- DT[, c(delete.cols) := NULL] %>%
-    setcolorder(keep.cols)
+  DT <- DT[, c(delete.cols) := NULL]
   return(DT)
 }
 
