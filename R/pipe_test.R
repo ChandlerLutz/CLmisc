@@ -24,11 +24,18 @@
 #' mtcars.DT %>%
 #'  .[, cyl := as.character(cyl)] %>%
 #'  pipe_test(test = class(.[["cyl"]]), value = "character")
+#' ## Or
+#' mtcars.DT %>%
+#'  .[, cyl := as.character(cyl)] %>%
+#'  pipe_test(class(.[["cyl"]]) == "character")
+#' 
 #'
 #' @export
-pipe_test <- function(obj, test, value, tolerance = NULL) {
+pipe_test <- function(obj, test, value = TRUE, tolerance = NULL) {
 
-  if (is.null(tolerance)) {
+  if (value == TRUE & is.null(tolerance)) {
+    out <- all(test)
+  } else if (is.null(tolerance)) {
     ##No tolerance
     out <- all.equal(value, test)
   } else {
