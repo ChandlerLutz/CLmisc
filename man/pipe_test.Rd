@@ -4,7 +4,7 @@
 \alias{pipe_test}
 \title{Test in a \code{magrittr} pipe}
 \usage{
-pipe_test(obj, test, value, tolerance = NULL)
+pipe_test(obj, test, value = TRUE, tolerance = NULL)
 }
 \arguments{
 \item{obj}{An \code{R} object. When used in a \code{magrittr}, this
@@ -30,5 +30,10 @@ mtcars.DT <- as.data.table(mtcars)
 mtcars.DT \%>\%
  .[, cyl := as.character(cyl)] \%>\%
  pipe_test(test = class(.[["cyl"]]), value = "character")
+## Or
+mtcars.DT \%>\%
+ .[, cyl := as.character(cyl)] \%>\%
+ pipe_test(class(.[["cyl"]]) == "character")
+
 
 }
