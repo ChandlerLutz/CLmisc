@@ -36,6 +36,11 @@ get_rnhgis_shp <- function(shp, save_dir = here::here("data-raw/rnhgis_shp/")) {
   if (length(shp) != 1) 
     stop("Error in `get_rnhgis_shp()`: `shp` must be a single string with the name of the shapefile to download")
 
+  save_file_loc <- here::here(save_dir, paste0(shp, ".rds"))
+
+  if (file.exists(save_file_loc)) 
+    return(readRDS(save_file_loc))
+
   ## Check for an NHGIS key in the environment
   if (!"IPUMS_API_KEY" %in% names(Sys.getenv())) 
     stop("Error in `get_rnhgis_shp()`: IPUMS_API_KEY not found in environment")
@@ -43,11 +48,6 @@ get_rnhgis_shp <- function(shp, save_dir = here::here("data-raw/rnhgis_shp/")) {
   mkdir_p(save_dir)
   save_dir_zips <- paste0(save_dir, "zip_files/")
   mkdir_p(save_dir_zips)
-
-  save_file_loc <- here::here(save_dir, paste0(shp, ".rds"))
-
-  if (file.exists(save_file_loc)) 
-    return(readRDS(save_file_loc))
 
   nhgis_shp_ext <- ipumsr::define_extract_nhgis(
     description = paste("Shapefile request", Sys.time()),
