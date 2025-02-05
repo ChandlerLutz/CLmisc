@@ -61,23 +61,35 @@ est_cl.small <- reduce_felm_object_size(est_cl)
 
 
 test_that("running reduce_felm_object_size does not affect broom::tidy", {
-  expect_equal(broom::tidy(est),
-               broom::tidy(est.small))
+  expect_equal(
+    broom::tidy(est),
+    suppressWarnings(broom::tidy(est.small))
+  )
 
-  expect_equal(broom::tidy(est, se.type = "robust"),
-               broom::tidy(est.small, se.type = "robust"))
+  expect_equal(
+    broom::tidy(est, se.type = "robust"),
+    suppressWarnings(broom::tidy(est.small, se.type = "robust"))
+  )
 
-  expect_equal(broom::tidy(ivest),
-               broom::tidy(ivest.small))
+  expect_equal(
+    broom::tidy(ivest),
+    suppressWarnings(broom::tidy(ivest.small))
+  )
 
-  expect_equal(broom::tidy(ivest, se.type = "robust"),
-               broom::tidy(ivest.small, se.type = "robust"))
+  expect_equal(
+    broom::tidy(ivest, se.type = "robust"),
+    suppressWarnings(broom::tidy(ivest.small, se.type = "robust"))
+  )
 
-  expect_equal(broom::tidy(est_cl),
-               broom::tidy(est_cl.small))
+  expect_equal(
+    broom::tidy(est_cl),
+    suppressWarnings(broom::tidy(est_cl.small))
+  )
 
-  expect_equal(broom::tidy(est_cl, se.type = "cluster"),
-               broom::tidy(est_cl.small, se.type = "cluster"))
+  expect_equal(
+    broom::tidy(est_cl, se.type = "cluster"),
+    suppressWarnings(broom::tidy(est_cl.small, se.type = "cluster"))
+  )
 
 })
 

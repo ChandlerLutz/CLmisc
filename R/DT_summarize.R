@@ -81,7 +81,7 @@ DT_summarize <- function(DT, fun, vars, names.extra = NULL) {
     ##Set the names and return
     DT %>%
         setnames(vars, paste0(vars, names.extra)) %>%
-        return
+        return()
 
 }
 

@@ -7,20 +7,20 @@
 get_rtigris(tigris_fun, save_dir = here::here("data-raw/rtigris/"), ...)
 }
 \arguments{
-\item{tigris_fun}{A function from the \code{\link[tigris:tigris-package]{tigris}} package.  This should be passed as a bare function name (e.g., \code{zctas}, not \code{"zctas"}).}
+\item{tigris_fun}{A function from the `tigris` package.  This should be passed as a bare function name (e.g., `zctas`, not `"zctas"`).}
 
-\item{save_dir}{The directory where the cached RDS files should be saved. Defaults to \code{here::here("data-raw/tigris/")}.}
+\item{save_dir}{The directory where the cached RDS files should be saved. Defaults to `here::here("data-raw/tigris/")`.}
 
-\item{...}{Additional arguments to be passed to the \code{tigris_fun}.  These arguments will be incorporated into the name of the cached file, allowing for different cached versions based on different function arguments.}
+\item{...}{Additional arguments to be passed to the `tigris_fun`.  These arguments will be incorporated into the name of the cached file, allowing for different cached versions based on different function arguments.}
 }
 \value{
-An sf object containing the data retrieved from the specified \code{tigris_fun}.
+An sf object containing the data retrieved from the specified `tigris_fun`.
 }
 \description{
-This function retrieves data from the \code{\link[tigris:tigris-package]{tigris}} package, caches the results as an RDS file, and returns the data.  It avoids redundant downloads by checking for the existence of a cached file before attempting to download.
+This function retrieves data from the `tigris` package, caches the results as an RDS file, and returns the data.  It avoids redundant downloads by checking for the existence of a cached file before attempting to download.
 }
 \details{
-This function simplifies the process of working with the \code{tigris} package by automatically caching downloaded data.  It constructs a file name based on the function called and its arguments, ensuring that different datasets or different queries to the same dataset are stored separately. This prevents unnecessary downloads and speeds up subsequent access to the same data.
+This function simplifies the process of working with the `tigris` package by automatically caching downloaded data.  It constructs a file name based on the function called and its arguments, ensuring that different datasets or different queries to the same dataset are stored separately. This prevents unnecessary downloads and speeds up subsequent access to the same data.
 
 The function performs several checks to ensure that the provided `tigris_fun` is a valid function from the `tigris` package and that the returned object is an sf object with a geometry column.
 }

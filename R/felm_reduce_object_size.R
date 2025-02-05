@@ -94,7 +94,7 @@
 #' @export
 reduce_felm_object_size <- function(felm.object) {
 
-  if (class(felm.object) != "felm")
+  if (!inherits(felm.object, "felm"))
     stop("felm.object must be an felm object")
 
   ##delete these felm attributes

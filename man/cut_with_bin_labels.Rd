@@ -43,10 +43,10 @@ on the right (and open on the left) or vice versa. Default is
 determines the number of digits used in formatting the break
 numbers.}
 
-\item{...}{further arguments passed to or from other methods.}
-
-\item{order_result}{logical: should the result be an ordered
+\item{ordered_result}{logical: should the result be an ordered
 factor?}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \description{
 Use endpoints as bin labels with \code{cut}. The only difference between
@@ -57,18 +57,26 @@ levels based on the endpoints if \code{labels} are specified as either
 \examples{
 data(mtcars)
 breaks <- seq(from = 0, to = max(mtcars$hp) + 10, by = 10)
-data.table(hp = mtcars$hp,
-           bin.cut.default = cut(mtcars$hp, breaks = breaks),
-           bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left"),
-           bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right")
-          ) \%>\% print
+dt <- data.table(
+  hp = mtcars$hp,
+  bin.cut.default = cut(mtcars$hp, breaks = breaks),
+  bin.left.endpoint = cut_with_bin_labels(
+    mtcars$hp, breaks = breaks, labels = "left"),
+  bin.right.endpoint = cut_with_bin_labels(
+    mtcars$hp, breaks = breaks, labels = "right")
+)
+dt \%>\% print
 
-#Using `right` == FALSE
-data.table(hp = mtcars$hp,
-           bin.cut.default = cut(mtcars$hp, breaks = breaks, right = FALSE),
-           bin.left.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "left", right = FALSE),
-           bin.right.endpoint = cut_with_bin_labels(mtcars$hp, breaks = breaks, labels = "right", right = FALSE)
-          ) \%>\% print
+# Using `right` == FALSE
+dt2 <- data.table(
+  hp = mtcars$hp,
+  bin.cut.default = cut(mtcars$hp, breaks = breaks, right = FALSE),
+  bin.left.endpoint = cut_with_bin_labels(
+    mtcars$hp, breaks = breaks, labels = "left", right = FALSE),
+  bin.right.endpoint = cut_with_bin_labels(
+    mtcars$hp, breaks = breaks, labels = "right", right = FALSE)
+)
+dt2 \%>\% print()
 }
 \seealso{
 \code{cut()}, \code{ggplot2::cut_interval()},
