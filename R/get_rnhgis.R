@@ -9,6 +9,8 @@
 #'   specifying the datasets to retrieve.
 #' @param lkp Logical. If `TRUE`, returns the lookup table; if `FALSE`
 #'   (default), returns the dataset.
+#' @param refresh Logical. If `TRUE`, forces a refresh of the cached;
+#'   if `FALSE` (default), uses the cached data.
 #' @param save_dir Directory where downloaded data and lookup tables
 #'   are saved. Defaults to "data-raw/rnhgis_data/".
 #'
@@ -61,7 +63,7 @@
 #' }
 #'
 #' @export
-get_rnhgis_ds <- function(..., lkp = FALSE,
+get_rnhgis_ds <- function(..., lkp = FALSE, refresh = FALSE, 
                           save_dir = here::here("data-raw/rnhgis_ds/")) {
 
   args <- list(...)
@@ -79,10 +81,11 @@ get_rnhgis_ds <- function(..., lkp = FALSE,
   save_file_loc_lkp <- sprintf(
     "%s/%s_lkp.parquet", save_dir, paste0(args_key_val_string)
   )
+
   
-  if (file.exists(save_file_loc) && !lkp) {
+  if (file.exists(save_file_loc) && !refresh && !lkp) {
     return(nanoparquet::read_parquet(save_file_loc))
-  } else if (file.exists(save_file_loc) && lkp) {
+  } else if (file.exists(save_file_loc) && !refresh && lkp) {
     return(nanoparquet::read_parquet(save_file_loc_lkp))
   }
   
@@ -155,6 +158,8 @@ get_rnhgis_ds <- function(..., lkp = FALSE,
 #'   specifying the time series tables to retrieve.
 #' @param lkp Logical. If `TRUE`, returns the lookup table; if `FALSE`
 #'   (default), returns the dataset.
+#' @param refresh Logical. If `TRUE`, forces a refresh of the cached;
+#'   if `FALSE` (default), uses the cached data.
 #' @param save_dir Directory where downloaded data and lookup tables
 #'   are saved. Defaults to "data-raw/rnhgis_tst/".
 #'
@@ -198,7 +203,7 @@ get_rnhgis_ds <- function(..., lkp = FALSE,
 #' }
 #'
 #' @export
-get_rnhgis_tst <- function(..., lkp = FALSE,
+get_rnhgis_tst <- function(..., lkp = FALSE, refresh = FALSE, 
                            save_dir = here::here("data-raw/rnhgis_tst/")) {
 
   args <- list(...)

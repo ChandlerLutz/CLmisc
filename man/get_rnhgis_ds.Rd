@@ -4,7 +4,12 @@
 \alias{get_rnhgis_ds}
 \title{Retrieve NHGIS datasets with caching and lookup table generation.}
 \usage{
-get_rnhgis_ds(..., lkp = FALSE, save_dir = here::here("data-raw/rnhgis_ds/"))
+get_rnhgis_ds(
+  ...,
+  lkp = FALSE,
+  refresh = FALSE,
+  save_dir = here::here("data-raw/rnhgis_ds/")
+)
 }
 \arguments{
 \item{...}{Arguments to be passed to `ipumsr::ds_spec()`,
@@ -12,6 +17,9 @@ specifying the datasets to retrieve.}
 
 \item{lkp}{Logical. If `TRUE`, returns the lookup table; if `FALSE`
 (default), returns the dataset.}
+
+\item{refresh}{Logical. If `TRUE`, forces a refresh of the cached;
+if `FALSE` (default), uses the cached data.}
 
 \item{save_dir}{Directory where downloaded data and lookup tables
 are saved. Defaults to "data-raw/rnhgis_data/".}

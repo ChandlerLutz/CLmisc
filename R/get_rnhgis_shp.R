@@ -10,6 +10,8 @@
 #'   shapefile to download.  This name corresponds to the shapefile codes used
 #'   by NHGIS (e.g., "us_state_2020_tl2020").  See the `ipumsr` documentation for
 #'   how to find these codes.
+#' @param refresh Logical. If `TRUE`, forces a refresh of the cached;
+#'   if `FALSE` (default), uses the cached data.
 #' @param save_dir The directory where the downloaded and processed shapefiles
 #'   will be saved as RDS files.  Defaults to `"data-raw/rnhgis_shp/"` using
 #'   `here::here()`.  This directory will be created if it doesn't exist.
@@ -31,14 +33,15 @@
 #' @importFrom ipumsr is_extract_ready download_extract read_ipums_sf
 #'
 #' @export
-get_rnhgis_shp <- function(shp, save_dir = here::here("data-raw/rnhgis_shp/")) {
+get_rnhgis_shp <- function(shp, refresh = FALSE,
+                           save_dir = here::here("data-raw/rnhgis_shp/")) {
 
   if (length(shp) != 1) 
     stop("Error in `get_rnhgis_shp()`: `shp` must be a single string with the name of the shapefile to download")
 
   save_file_loc <- here::here(save_dir, paste0(shp, ".rds"))
 
-  if (file.exists(save_file_loc)) 
+  if (file.exists(save_file_loc) && !refresh) 
     return(readRDS(save_file_loc))
 
   ## Check for an NHGIS key in the environment

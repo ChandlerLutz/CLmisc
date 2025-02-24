@@ -4,13 +4,20 @@
 \alias{get_rnhgis_shp}
 \title{Download and cache NHGIS shapefiles.}
 \usage{
-get_rnhgis_shp(shp, save_dir = here::here("data-raw/rnhgis_shp/"))
+get_rnhgis_shp(
+  shp,
+  refresh = FALSE,
+  save_dir = here::here("data-raw/rnhgis_shp/")
+)
 }
 \arguments{
 \item{shp}{A character vector of length one specifying the name of the
 shapefile to download.  This name corresponds to the shapefile codes used
 by NHGIS (e.g., "us_state_2020_tl2020").  See the `ipumsr` documentation for
 how to find these codes.}
+
+\item{refresh}{Logical. If `TRUE`, forces a refresh of the cached;
+if `FALSE` (default), uses the cached data.}
 
 \item{save_dir}{The directory where the downloaded and processed shapefiles
 will be saved as RDS files.  Defaults to `"data-raw/rnhgis_shp/"` using
