@@ -44,7 +44,8 @@ dataset, including its name, type, and attributes.
 \examples{
 \dontrun{
 ## Example to get places pop time series from NHGIS
-tst <- get_metadata_nhgis(type = "time_series_tables") \%>\% setDT()
+tst <- ipumsr::get_metadata_nhgis(type = "time_series_tables") \%>\%
+   setDT()
 
 ## Find which time series tables have a place `geog_level`
 ## and get the total population variable

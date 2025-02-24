@@ -36,10 +36,10 @@
 #' @examples
 #' \dontrun{
 #' ## Example to get places pop from NHGIS
-#' ds <- get_metadata_nhgis(type = "datasets") %>% setDT()
+#' ds <- ipumsr::get_metadata_nhgis(type = "datasets") %>% setDT()
 #' ds[grepl("2000", name) & grepl("SF1", name)]
 #'
-#' sf1 <- get_metadata_nhgis(dataset = "2000_SF1a")
+#' sf1 <- ipumsr::get_metadata_nhgis(dataset = "2000_SF1a")
 #'
 #' ## Find the variable name
 #' sf1$data_tables %>% as.data.table() %>% .[grepl("Total Population", description)]
@@ -182,7 +182,8 @@ get_rnhgis_ds <- function(..., lkp = FALSE,
 #' @examples
 #' \dontrun{
 #' ## Example to get places pop time series from NHGIS
-#' tst <- get_metadata_nhgis(type = "time_series_tables") %>% setDT()
+#' tst <- ipumsr::get_metadata_nhgis(type = "time_series_tables") %>%
+#'    setDT()
 #'
 #' ## Find which time series tables have a place `geog_level`
 #' ## and get the total population variable
