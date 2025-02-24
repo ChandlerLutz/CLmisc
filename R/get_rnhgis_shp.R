@@ -58,7 +58,7 @@ get_rnhgis_shp <- function(shp, save_dir = here::here("data-raw/rnhgis_shp/")) {
 
   shp_extract_complete <- ipumsr::wait_for_extract(nhgis_shp_ext_submitted)
 
-  if (is_extract_ready(shp_extract_complete)) {
+  if (ipumsr::is_extract_ready(shp_extract_complete)) {
     dwnld_file_loc <- ipumsr::download_extract(
       shp_extract_complete,
       download_dir = save_dir_zips,

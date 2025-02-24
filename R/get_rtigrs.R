@@ -1,17 +1,33 @@
 #' Retrieve and cache data from the tigris package.
 #'
-#' This function retrieves data from the `tigris` package, caches the results as an RDS file, and returns the data.  It avoids redundant downloads by checking for the existence of a cached file before attempting to download.
+#' This function retrieves data from the `tigris` package, caches the
+#' results as an RDS file, and returns the data.  It avoids redundant
+#' downloads by checking for the existence of a cached file before
+#' attempting to download.
 #'
-#' @param tigris_fun A function from the `tigris` package.  This should be passed as a bare function name (e.g., `zctas`, not `"zctas"`).
-#' @param save_dir The directory where the cached RDS files should be saved. Defaults to `here::here("data-raw/tigris/")`.
-#' @param ... Additional arguments to be passed to the `tigris_fun`.  These arguments will be incorporated into the name of the cached file, allowing for different cached versions based on different function arguments.
+#' @param tigris_fun A function from the `tigris` package.  This
+#'   should be passed as a bare function name (e.g., `zctas`, not
+#'   `"zctas"`).
+#' @param save_dir The directory where the cached RDS files should be
+#'   saved. Defaults to `here::here("data-raw/tigris/")`.
+#' @param ... Additional arguments to be passed to the `tigris_fun`.
+#'   These arguments will be incorporated into the name of the cached
+#'   file, allowing for different cached versions based on different
+#'   function arguments.
 #'
 #' @return An sf object containing the data retrieved from the specified `tigris_fun`.
 #'
-#' @details
-#' This function simplifies the process of working with the `tigris` package by automatically caching downloaded data.  It constructs a file name based on the function called and its arguments, ensuring that different datasets or different queries to the same dataset are stored separately. This prevents unnecessary downloads and speeds up subsequent access to the same data.
+#' @details This function simplifies the process of working with the
+#'   `tigris` package by automatically caching downloaded data.  It
+#'   constructs a file name based on the function called and its
+#'   arguments, ensuring that different datasets or different queries
+#'   to the same dataset are stored separately. This prevents
+#'   unnecessary downloads and speeds up subsequent access to the same
+#'   data.
 #'
-#' The function performs several checks to ensure that the provided `tigris_fun` is a valid function from the `tigris` package and that the returned object is an sf object with a geometry column.
+#' The function performs several checks to ensure that the provided
+#' `tigris_fun` is a valid function from the `tigris` package and that
+#' the returned object is an sf object with a geometry column.
 #'
 #' @examples
 #' \dontrun{
