@@ -222,9 +222,9 @@ get_rnhgis_tst <- function(..., lkp = FALSE, refresh = FALSE,
     "%s/%s_lkp.parquet", save_dir, paste0(args_key_val_string)
   )
 
-  if (file.exists(save_file_loc) && !lkp) {
+  if (file.exists(save_file_loc) && !refresh && !lkp) {
     return(nanoparquet::read_parquet(save_file_loc))
-  } else if (file.exists(save_file_loc) && lkp) {
+  } else if (file.exists(save_file_loc) && !refresh && lkp) {
     return(nanoparquet::read_parquet(save_file_loc_lkp))
   }
   
