@@ -39,7 +39,7 @@ get_rnhgis_shp <- function(shp, refresh = FALSE,
   if (length(shp) != 1) 
     stop("Error in `get_rnhgis_shp()`: `shp` must be a single string with the name of the shapefile to download")
 
-  save_file_loc <- here::here(save_dir, paste0(shp, ".rds"))
+  save_file_loc <- file.path(save_dir, paste0(shp, ".rds"))
 
   if (file.exists(save_file_loc) && !refresh) 
     return(readRDS(save_file_loc))
