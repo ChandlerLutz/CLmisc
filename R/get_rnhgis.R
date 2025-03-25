@@ -119,8 +119,11 @@ get_rnhgis_ds <- function(..., lkp = FALSE, refresh = FALSE,
     stop("Error in `get_rnhgis_ds()`: Extract not ready")
   }
 
-  if (nrow(ipumsr::ipums_list_files(dwnld_file_loc)) > 1) {
-    stop("Error in `get_rnhgis_ds()`: Multiple  downloaded; only single files supported")
+  num_files <- ipumsr::ipums_list_files(dwnld_file_loc) %>%
+    as.data.table() %>%
+    .[type == "data"] %>% nrow()
+  if (num_files != 1) {
+    stop("Error in `get_rnhgis_ds()`: Multiple downloaded; only single files supported")
   }
 
   data <- ipumsr::read_nhgis(dwnld_file_loc)
@@ -258,8 +261,11 @@ get_rnhgis_tst <- function(..., lkp = FALSE, refresh = FALSE,
     stop("Error in `get_rnhgis_ds()`: Extract not ready")
   }
 
-  if (nrow(ipumsr::ipums_list_files(dwnld_file_loc)) > 1) {
-    stop("Error in `get_rnhgis_ds()`: Multiple  downloaded; only single files supported")
+  num_files <- ipumsr::ipums_list_files(dwnld_file_loc) %>%
+    as.data.table() %>%
+    .[type == "data"] %>% nrow()
+  if (num_files != 1) {
+    stop("Error in `get_rnhgis_ds()`: Multiple downloaded; only single files supported")
   }
 
   data <- ipumsr::read_nhgis(dwnld_file_loc)
