@@ -37,7 +37,7 @@ the target environment.
 }
 \details{
 The function first validates the `file` argument to ensure it's a single,
-existing R script. It then creates a new, empty environment and sources the
+existing R script. It then creates a new, empty (base) environment and sources the
 `file` into this temporary environment using `source(file, local = temp_env)`.
 This isolation prevents the sourced script from affecting any other environments
 directly.

@@ -27,7 +27,7 @@
 #'
 #' @details
 #' The function first validates the `file` argument to ensure it's a single,
-#' existing R script. It then creates a new, empty environment and sources the
+#' existing R script. It then creates a new, empty (base) environment and sources the
 #' `file` into this temporary environment using `source(file, local = temp_env)`.
 #' This isolation prevents the sourced script from affecting any other environments
 #' directly.
@@ -113,7 +113,7 @@ load_functions <- function(file, fs = NULL, mode = "function", envir = parent.fr
     grepl("\\.R$", file)
   )
 
-  env <- new.env(parent = emptyenv())
+  env <- new.env(parent = baseenv())
   source(file, local = env)
 
   all_objects <- ls(envir = env, all.names = TRUE)
