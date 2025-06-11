@@ -52,17 +52,19 @@ dataset, including its name, type, and attributes.
 \examples{
 \dontrun{
 ## Example to get places pop time series from NHGIS
-tst <- ipumsr::get_metadata_nhgis(type = "time_series_tables") \%>\%
-   setDT()
+tst <- ipumsr::get_metadata_catalog(
+  collection = "nhgis", metadata_type =  "time_series_tables"
+) \%>\%
+  setDT()
 
 ## Find which time series tables have a place `geog_level`
 ## and get the total population variable
 tst[sapply(geog_levels, function(x) any(grepl("place", x)))] \%>\%
   .[grepl("Total Population", description)]
 
-tst_spec(name = "AV0", geog_levels = "place")
+ipumsr::tst_spec(name = "AV0", geog_levels = "place")
 
-place_pop_tst <- get_rnhgis_tst(name = "AV0", geog_levels = "place")
+place_pop_tst <- get_rnhgis_tst(name = "AV0", geog_levels = "state")
 
 place_pop_tst_lkp <- get_rnhgis_tst(name = "AV0", geog_levels = "place", lkp = TRUE)
 }

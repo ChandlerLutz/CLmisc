@@ -56,7 +56,8 @@ get_rnhgis_shp <- function(shp, refresh = FALSE,
   save_dir_zips <- paste0(save_dir, "zip_files/")
   mkdir_p(save_dir_zips)
 
-  nhgis_shp_ext <- ipumsr::define_extract_nhgis(
+  nhgis_shp_ext <- ipumsr::define_extract_agg(
+    collection = "nhgis",
     description = paste("Shapefile request", Sys.time()),
     shapefiles = shp
   )

@@ -38,10 +38,11 @@
 #' @examples
 #' \dontrun{
 #' ## Example to get places pop from NHGIS
-#' ds <- ipumsr::get_metadata_nhgis(type = "datasets") %>% setDT()
+#' ds <- ipumsr::get_metadata_catalog(collection = "nhgis", metadata_type = "datasets") %>%
+#'   setDT()
 #' ds[grepl("2000", name) & grepl("SF1", name)]
 #'
-#' sf1 <- ipumsr::get_metadata_nhgis(dataset = "2000_SF1a")
+#' sf1 <- ipumsr::get_metadata(collection = "nhgis", dataset = "2000_SF1a")
 #'
 #' ## Find the variable name
 #' sf1$data_tables %>% as.data.table() %>% .[grepl("Total Population", description)]
@@ -99,7 +100,8 @@ get_rnhgis_ds <- function(..., lkp = FALSE, refresh = FALSE,
 
   ds <- ipumsr::ds_spec(...)
 
-  nhgis_data_ext <- ipumsr::define_extract_nhgis(
+  nhgis_data_ext <- ipumsr::define_extract_agg(
+    collection = "nhgis",
     description = paste("Data request", Sys.time()),
     datasets = ds
   )
@@ -126,7 +128,7 @@ get_rnhgis_ds <- function(..., lkp = FALSE, refresh = FALSE,
     stop("Error in `get_rnhgis_ds()`: Multiple downloaded; only single files supported")
   }
 
-  data <- ipumsr::read_nhgis(dwnld_file_loc)
+  data <- ipumsr::read_ipums_agg(dwnld_file_loc)
 
   dt_lkp <- 
     cbind(
@@ -190,17 +192,19 @@ get_rnhgis_ds <- function(..., lkp = FALSE, refresh = FALSE,
 #' @examples
 #' \dontrun{
 #' ## Example to get places pop time series from NHGIS
-#' tst <- ipumsr::get_metadata_nhgis(type = "time_series_tables") %>%
-#'    setDT()
+#' tst <- ipumsr::get_metadata_catalog(
+#'   collection = "nhgis", metadata_type =  "time_series_tables"
+#' ) %>%
+#'   setDT()
 #'
 #' ## Find which time series tables have a place `geog_level`
 #' ## and get the total population variable
 #' tst[sapply(geog_levels, function(x) any(grepl("place", x)))] %>%
 #'   .[grepl("Total Population", description)]
 #'
-#' tst_spec(name = "AV0", geog_levels = "place")
+#' ipumsr::tst_spec(name = "AV0", geog_levels = "place")
 #'
-#' place_pop_tst <- get_rnhgis_tst(name = "AV0", geog_levels = "place")
+#' place_pop_tst <- get_rnhgis_tst(name = "AV0", geog_levels = "state")
 #'
 #' place_pop_tst_lkp <- get_rnhgis_tst(name = "AV0", geog_levels = "place", lkp = TRUE)
 #' }
@@ -241,7 +245,8 @@ get_rnhgis_tst <- function(..., lkp = FALSE, refresh = FALSE,
 
   tst <- ipumsr::tst_spec(...)
 
-  nhgis_data_ext <- ipumsr::define_extract_nhgis(
+  nhgis_data_ext <- ipumsr::define_extract_agg(
+    collection = "nhgis",
     description = paste("Data request", Sys.time()),
     time_series_tables = tst
   )
@@ -268,14 +273,13 @@ get_rnhgis_tst <- function(..., lkp = FALSE, refresh = FALSE,
     stop("Error in `get_rnhgis_ds()`: Multiple downloaded; only single files supported")
   }
 
-  data <- ipumsr::read_nhgis(dwnld_file_loc)
+  data <- ipumsr::read_ipums_agg(dwnld_file_loc)
 
   dt_lkp <- 
     cbind(
       data.table(var = names(data), type = sapply(data, class)), 
       data %>% lapply(attributes) %>% rbindlist(fill = TRUE)
     )
-  
   
   nanoparquet::write_parquet(data, save_file_loc)
   nanoparquet::write_parquet(dt_lkp, save_file_loc_lkp)

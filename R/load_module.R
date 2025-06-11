@@ -88,7 +88,7 @@ load_module <- function(file_path,
   }
 
   if (!file.exists(file_path)) {
-      stop(paste("File does not exist at the provided path:", file_path), call. = FALSE)
+    stop(paste("File does not exist at the provided path:", file_path), call. = FALSE)
   }
 
   # Normalize the file path to get its canonical, absolute form.
