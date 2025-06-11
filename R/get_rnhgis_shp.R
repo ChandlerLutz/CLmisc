@@ -21,7 +21,10 @@
 #' @examples
 #' \dontrun{
 #' # Get the NHGIS shp files
-#' nhgis_shp <- ipumsr::get_metadata_nhgis(type="shapefiles") %>% setDT()
+#' nhgis_shp <- ipumsr::get_metadata_catalog(
+#'   collection = "nhgis", metadata_type = "shapefiles"
+#' ) %>%
+#'   setDT()
 #' nhgis_shp[geographic_level == "State" & year == 2020] %>% print()
 #' 
 #' # Download and cache the 2020 US counties shapefile.
